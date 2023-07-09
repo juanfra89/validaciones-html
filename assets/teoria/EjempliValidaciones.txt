@@ -1,0 +1,94 @@
+index.html:
+html
+Copy code
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <form id="my-form">
+    <input type="text" id="username" name="username" required>
+    <input type="email" id="email" name="email" required>
+    <button type="submit">Enviar</button>
+  </form>
+  
+  <script src="script.js"></script>
+</body>
+</html>
+styles.css:
+css
+Copy code
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+script.js:
+javascript
+Copy code
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('my-form');
+  const usernameInput = document.getElementById('username');
+  const emailInput = document.getElementById('email');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    if (validateForm()) {
+      form.submit();
+    }
+  });
+
+  function validateForm() {
+    let isValid = true;
+
+    if (usernameInput.value === '') {
+      displayError(usernameInput, 'Por favor, ingresa un nombre de usuario');
+      isValid = false;
+    } else {
+      clearError(usernameInput);
+    }
+
+    if (emailInput.value === '') {
+      displayError(emailInput, 'Por favor, ingresa un correo electrónico');
+      isValid = false;
+    } else if (!isValidEmail(emailInput.value)) {
+      displayError(emailInput, 'Por favor, ingresa un correo electrónico válido');
+      isValid = false;
+    } else {
+      clearError(emailInput);
+    }
+
+    return isValid;
+  }
+
+  function displayError(input, message) {
+    const errorElement = document.createElement('span');
+    errorElement.className = 'error-message';
+    errorElement.textContent = message;
+    
+    const parentElement = input.parentNode;
+    parentElement.appendChild(errorElement);
+  }
+
+  function clearError(input) {
+    const parentElement = input.parentNode;
+    const errorElement = parentElement.querySelector('.error-message');
+
+    if (errorElement) {
+      parentElement.removeChild(errorElement);
+    }
+  }
+
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+});
+En este ejemplo, hemos separado el código en tres archivos: index.html para la estructura HTML, styles.css para los estilos CSS y script.js para el código JavaScript. Esto ayuda a mantener una mejor organización y separación de responsabilidades.
+
+El archivo index.html enlaza el archivo CSS y JavaScript correspondientes. El archivo styles.css contiene estilos adicionales, y el archivo script.js contiene el código JavaScript para la validación del formulario.
+
+Al cargar la página, el evento DOMContentLoaded se dispara y se asignan los controladores de eventos y las funciones de validación. El resto del código es similar al ejemplo anterior.
+
+Espero que este ejemplo más ordenado te resulte útil. Si tienes más preguntas, no dudes en hacerlas.

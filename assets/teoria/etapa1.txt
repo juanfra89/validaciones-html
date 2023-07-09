@@ -1,0 +1,63 @@
+Claro! A continuación te explico cada tema con ejemplos:
+
+Hacer validación en el propio HTML utilizando los atributos required y type:
+En HTML, puedes realizar validaciones básicas utilizando los atributos required y type en los elementos de entrada (<input>).
+ El atributo required indica que un campo es obligatorio y el atributo type especifica el tipo de dato esperado.
+
+Ejemplo:
+
+html  code
+
+<input type="text" required>
+<input type="email" required>
+<input type="number" required>
+En este ejemplo, se muestran tres ejemplos de campos de entrada. El primer campo espera texto,
+ el segundo campo espera una dirección de correo electrónico y el tercer campo espera un número.
+ Al agregar el atributo required, el navegador validará automáticamente si los campos están vacíos antes de enviar el formulario.
+
+Utilizar reglas del regex dentro del atributo pattern para validar el campo de contraseña:
+Puedes utilizar expresiones regulares (regex) dentro del atributo pattern para aplicar reglas de
+ validación personalizadas a un campo de contraseña.
+
+Ejemplo:
+
+html Copy code
+
+<input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$">
+En este ejemplo, el atributo pattern contiene una expresión regular que valida la contraseña.
+ La expresión regular requiere al menos una letra mayúscula, una letra minúscula, un dígito y una longitud mínima de 8 caracteres.
+  Si el usuario ingresa una contraseña que no cumple con estas reglas, el navegador mostrará un mensaje de error predeterminado.
+
+Mandar un mensaje customizado de error en el navegador:
+Puedes personalizar el mensaje de error que se muestra en el navegador utilizando el atributo title en el campo de entrada.
+ Este mensaje se mostrará cuando el usuario envíe un valor inválido.
+
+Ejemplo:
+
+html
+Copy code
+<input type="email" required title="Ingrese una dirección de correo electrónico válida">
+<input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" title="La contraseña debe contener al menos una letra mayúscula,
+ una letra minúscula, un dígito y tener una longitud mínima de 8 caracteres">
+En este ejemplo, se agregó el atributo title a los campos de entrada.
+ Los mensajes proporcionan una descripción clara de los requisitos de entrada y se mostrarán cuando el usuario envíe un valor inválido.
+
+Recuerda que la validación en el lado del cliente es útil para proporcionar una experiencia más fluida al usuario,
+ pero también es importante realizar una validación adicional en el lado del servidor para garantizar la seguridad y la integridad de los datos.
+
+ El patrón de expresión regular ^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$ se utiliza para validar una contraseña con ciertas reglas específicas.
+  Aquí tienes una explicación punto por punto:
+
+^: Marca el inicio del string.
+(?=.*\d): Es una expresión positiva de búsqueda hacia adelante (?=...) que verifica si hay al menos un dígito (\d) en la contraseña.
+(?=.*[a-z]): Es otra expresión positiva de búsqueda hacia adelante que verifica si hay al menos una letra minúscula ([a-z]) en la contraseña.
+(?=.*[A-Z]): Es otra expresión positiva de búsqueda hacia adelante que verifica si hay al menos una letra mayúscula ([A-Z]) en la contraseña.
+.{8,}: Verifica que la contraseña tenga al menos 8 caracteres.
+$: Marca el final del string.
+En resumen, este patrón de expresión regular valida una contraseña que cumple con las siguientes reglas:
+
+Debe contener al menos un dígito.
+Debe contener al menos una letra minúscula.
+Debe contener al menos una letra mayúscula.
+Debe tener una longitud mínima de 8 caracteres.
+Si una contraseña ingresada coincide con este patrón, se considera válida. De lo contrario, no se considera válida y puede mostrar un mensaje de error.
